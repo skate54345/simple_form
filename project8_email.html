@@ -1,0 +1,93 @@
+<html>
+<head>
+  <title>Email Austin</title>
+  <link rel="stylesheet" href="project8_email.css">
+</head>
+
+<body>
+<center>
+<h1>Email Austin
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Email_Shiny_Icon.svg/1024px-Email_Shiny_Icon.svg.png" height="42" width="42"></img>
+</h1>
+
+<hr />
+
+
+<script>
+
+function validateAll(){
+  var email = document.forms["form"]["email"].value; //sets variable for email input
+  var name = document.forms["form"]["name"].value; //sets variable for name input
+  var subject = document.forms["form"]["subject"].value; //sets variable for subject input
+  var message = document.forms["form"]["message"].value; //sets variable for message input
+  
+  var okMsg = false;
+  var okEmail = false;
+  function validateBlank(){	
+	if(email == "" || name == "" || subject == "" || message == ""){ //checks if any are blank
+		alert("Some fields are left blank"); //alerts invalid
+		return false;
+	}
+	else{
+		okMsg = true; //sets boolean 1 to true
+	}
+  }
+  
+  function validateEmail(){
+	if(!email.includes("@") || !email.includes(".")){ //checks for @ symbol and .
+		alert("Invalid Email"); //alerts invali
+		return false;
+	}
+	else{
+		okEmail = true; //sets boolean 2 to true
+	}
+  }
+  
+  //calls all other functions
+  validateEmail();
+  validateBlank();
+  
+  if(okEmail && okMsg){ //if passes both checks
+    document.write("Thank you " + name + "! Email Submitted."); //thank for submission
+  }
+}
+
+</script>
+<?php
+  mail(myemail@example.com, subject, message); //actually sends email
+?>
+
+<form name="form" action="project8_email.html" onSubmit="return validateAll()" method="post">
+  <table border="1">
+    <tr>
+	  <td>Email:</td>
+	  <td><input type="text" name="email"></td>
+	</tr>
+	<tr>
+	  <td>Name:</td>
+	  <td><input type="text" name="name"></td>
+	</tr>
+	<tr>
+	  <td>Subject:</td>
+	  <td><input type="text" name="subject"></td>
+	</tr>
+	<tr>
+	  <td>Message:</td>
+	  <td><input type="text" name="message"></td>
+	</tr>
+	<tr>
+	  <td>Question<input type="radio" radiogroup="alignment" name="options"></td>
+	  <td>Comment<input type="radio" radiogroup="alignment" name="options"></td>
+	  <td>Urgent<input type="radio" radiogroup="alignment" name="options"></td>
+	</tr>
+	<tr>
+	  <td><center><input type="submit" value="SEND"></center></td><center>
+	</tr>
+  </table>
+</form>
+
+<img src="http://maxpixel.freegreatpicture.com/static/photo/1x/Email-Spider-Monkey-News-E-post-Business-Man-1002781.jpg" height="425" width="325"></img>
+<hr />
+</center>
+</body>
+</html>
